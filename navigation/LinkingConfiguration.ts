@@ -6,9 +6,9 @@ export default {
     screens: {
       Root: {
         screens: {
-          TabOne: {
+          ProviderDash: {
             screens: {
-              TabOneScreen: 'one',
+              ProviderDashScreen: 'providerdash',
             },
           },
           TabTwo: {
