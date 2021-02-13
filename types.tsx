@@ -10,6 +10,8 @@ export type BottomTabParamList = {
 
 export type ProviderDashParamList = {
   ProviderDashScreen: undefined;
+  ProviderScreen: undefined;
+  FacilityScreen: undefined;
 };
 
 export type TabTwoParamList = {

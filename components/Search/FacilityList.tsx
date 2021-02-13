@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { StyleSheet } from 'react-native';
 import { SafeAreaView, FlatList, StatusBar, View, Text, TouchableOpacity } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 const renderFacility = ({ item }) =>
   <View style={styles.container}>
@@ -9,15 +10,16 @@ const renderFacility = ({ item }) =>
 
 export default function SearchResult({search}) {
 
+  const navigation = useNavigation();
   const facilitySource = (FACILITIES.filter(p => p.name.toLowerCase().includes(search.toLowerCase()) || p.location.toLowerCase().includes(search.toLowerCase()))); // TODO: Fuzzy search
 
   return (
     <SafeAreaView style={styles.container}>
 
-      facilitySource.length ? 
-        <FlatList extraData={facilitySource} data={facilitySource} renderItem={({item}) => <TouchableOpacity onPress={() => {navigation.navigate('Facility')}}  style={styles.item}>{renderFacility({item})}</TouchableOpacity>} keyExtractor={item => item.id} />
+      {facilitySource.length ? 
+        <FlatList extraData={facilitySource} data={facilitySource} renderItem={({item}) => <TouchableOpacity onPress={() => {navigation.navigate('FacilityProfile')}}  style={styles.item}>{renderFacility({item})}</TouchableOpacity>} keyExtractor={item => item.id} />
         :
-        <Text>None found!</Text>
+        <Text>None found!</Text>}
     </SafeAreaView>
   );
 }

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { StyleSheet } from 'react-native';
 import { SafeAreaView, FlatList, StatusBar, View, Text, TouchableOpacity } from 'react-native';
-import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
+import { useNavigation } from '@react-navigation/native';
 
 
 const renderProvider = ({ item }) =>
@@ -12,15 +12,16 @@ const renderProvider = ({ item }) =>
 
 export default function ProviderList({search}) {
 
+  const navigation = useNavigation();
   const providerSource = (PROVIDERS.filter(p => p.name.toLowerCase().includes(search.toLowerCase()) || p.prac.toLowerCase().includes(search.toLowerCase()))); // TODO: Fuzzy search
 
   return (
     <SafeAreaView style={styles.container}>
 
-      providerSource.length ? 
-        <FlatList extraData={providerSource} data={providerSource} renderItem={({item}) => <TouchableOpacity onPress={() => {navigation.navigate('Provider')}}  style={styles.item}>{renderProvider({item})}</TouchableOpacity>} keyExtractor={item => item.id} />
+      {providerSource.length ? 
+        <FlatList extraData={providerSource} data={providerSource} renderItem={({item}) => <TouchableOpacity onPress={() => {navigation.navigate('ProviderProfile')}}  style={styles.item}>{renderProvider({item})}</TouchableOpacity>} keyExtractor={item => item.id} />
         :
-        <Text>No providers found!</Text>
+        <Text>No providers found!</Text>}
     </SafeAreaView>
   );
 }

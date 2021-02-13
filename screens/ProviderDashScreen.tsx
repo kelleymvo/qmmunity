@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native';
 
 import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View } from '../components/Themed';
-import Categories from '../components/Search/categories';
+import Categories from '../components/Search/Categories';
 import SearchResult from '../components/Search/SearchResult';
 import Recommendations from '../components/Search/Recommendations';
 

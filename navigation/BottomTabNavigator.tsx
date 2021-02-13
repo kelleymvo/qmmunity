@@ -6,6 +6,7 @@ import * as React from 'react';
 import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
 import ProviderScreen from '../screens/ProviderScreen';
+import FacilityScreen from '../screens/FacilityScreen';
 import ProviderDashScreen from '../screens/ProviderDashScreen';
 import TabTwoScreen from '../screens/TabTwoScreen';
 import { BottomTabParamList, ProviderDashParamList, TabTwoParamList } from '../types';
@@ -55,7 +56,8 @@ function ProviderDashNavigator() {
         component={ProviderDashScreen}
         options={{ headerTitle: 'Provider Dashboard' }}
       />
-      <ProviderDashStack.Screen name="Provider" component={ProviderScreen} />
+      <ProviderDashStack.Screen name="FacilityProfile" component={FacilityScreen} />
+      <ProviderDashStack.Screen name="ProviderProfile" component={ProviderScreen} />
     </ProviderDashStack.Navigator>
   );
 }
