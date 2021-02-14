@@ -13,7 +13,6 @@ import { SearchBar } from 'react-native-elements';
 export default function ProviderDashScreen() {
 
   const [search, setSearch] = useState("");
-  
   const [finishedSearch, setFinishSearch] = useState(false);
 
   const updateSearch = (text) => setSearch(text);
