@@ -10,9 +10,10 @@ import Recommendations from '../components/Search/Recommendations';
 import { SafeAreaView, FlatList, StatusBar } from 'react-native';
 import { SearchBar } from 'react-native-elements';
 
-export default function SearchScreen({ fullView }) {
+export default function SearchScreen() {
 
   const [search, setSearch] = useState("");
+  const [searching, setSearching] = useState(false);
   const [filtering, setFiltering] = useState(false);
   const [finishedSearch, setFinishSearch] = useState(false);
   const [filters, setFilters] = useState([]);
@@ -31,12 +32,13 @@ export default function SearchScreen({ fullView }) {
 
   return (
     <SafeAreaView style={styles.container}>
-      <SearchBar placeholder="Type Here..." 
+      <SearchBar placeholder="Search" 
       platform="ios"
+      autoFocus={true}
       onChangeText={updateSearch} 
       value={search}
-      onFocus={() => fullView(true)}
-      onBlur={() => fullView(false)}
+      onFocus={() => setSearching(true)}
+      onBlur={() => setSearching(false)}
       onSubmitEditing={() => setFinishSearch(true) && setFiltering(false)}
       returnKeyType="search"
       />
@@ -50,14 +52,4 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-  searchContainer: {
-    flex: 1,
-    position: 'absolute',
-    backgroundColor: 'white',
-    top: 0,
-    left: 0,
-    bottom: 0,
-    zIndex: 100,
-    elevation: 100
-  }
 });
