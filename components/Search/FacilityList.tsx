@@ -1,12 +1,15 @@
 import * as React from 'react';
 import { StyleSheet } from 'react-native';
-import { SafeAreaView, FlatList, StatusBar, View, Text, TouchableOpacity } from 'react-native';
+import { SafeAreaView, FlatList, StatusBar, View, Text, TouchableOpacity, Dimensions } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { LinearGradient } from 'expo-linear-gradient';
 
 const renderFacility = ({ item }) =>
-  <View style={styles.container}>
-    <Text style={{ fontSize: 18 }}>{item.name} ({item.location})</Text>
-  </View>
+  <LinearGradient
+    colors={['#6518D3', '#3A2A53']}
+    style={styles.item}>
+    <Text style={{ color: 'white', fontSize: 18 }}>{item.name} ({item.location})</Text>
+  </LinearGradient>
 
 export default function SearchResult({search}) {
 
@@ -17,7 +20,8 @@ export default function SearchResult({search}) {
     <SafeAreaView style={styles.container}>
 
       {facilitySource.length ? 
-        <FlatList extraData={facilitySource} data={facilitySource} renderItem={({item}) => <TouchableOpacity onPress={() => {navigation.navigate('FacilityProfile', { name: item.name })}}  style={styles.item}>{renderFacility({item})}</TouchableOpacity>} keyExtractor={item => item.id} />
+        <FlatList contentContainerStyle={{alignItems: 'center'}}
+         extraData={facilitySource} data={facilitySource} renderItem={({item}) => <TouchableOpacity style={styles.itemContainer} onPress={() => {navigation.navigate('FacilityProfile', { name: item.name })}}  style={styles.item}>{renderFacility({item})}</TouchableOpacity>} keyExtractor={item => item.id} />
         :
         <Text>None found!</Text>}
     </SafeAreaView>
@@ -75,6 +79,20 @@ const FACILITIES = [
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: StatusBar.currentHeight || 0,
+    backgroundColor: "white"
+  },
+  itemContainer: {
+    width: Dimensions.get('screen').width - 40,
+    marginTop: 15,
+    paddingVertical: 10
+  },
+  itemImg: {
+    height: "100%"
+  },
+  item: {
+    flex: 1,
+    flexDirection: "row",
+    paddingVertical: 10,
+    borderRadius: 10,
   },
 });

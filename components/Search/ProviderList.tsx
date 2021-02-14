@@ -1,14 +1,21 @@
 import * as React from 'react';
 import { StyleSheet } from 'react-native';
-import { SafeAreaView, FlatList, StatusBar, View, Text, TouchableOpacity } from 'react-native';
+import { SafeAreaView, FlatList, StatusBar, View, Text, Image, TouchableOpacity, Dimensions } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { LinearGradient } from 'expo-linear-gradient';
+
 
 
 const renderProvider = ({ item }) =>
-  <View style={styles.container}>
-    <Text style={{ fontSize: 18 }}>{item.name} ({item.gender})</Text>
-    <Text style={{ color: "#aaa", fontSize: 12 }}>{item.prac}</Text>
-  </View>
+  <LinearGradient
+    colors={['#6518D3', '#3A2A53']}
+    style={styles.item}>
+    <Image style={styles.itemImg} source={{ uri: 'https://github.com/CNHCircleK/Images/blob/master/DBoard/OliviaChang.jpg?raw=true' }} />
+    <View style={{ marginLeft: 20}}>
+      <Text style={{ color: 'white', fontSize: 18 }}>{item.name} ({item.gender})</Text>
+      <Text style={{ color: 'white', fontSize: 12 }}>{item.prac}</Text>
+    </View>
+  </LinearGradient>
 
 export default function ProviderList({search}) {
 
@@ -17,11 +24,12 @@ export default function ProviderList({search}) {
 
   return (
     <SafeAreaView style={styles.container}>
-
       {providerSource.length ? 
-        <FlatList extraData={providerSource} data={providerSource} renderItem={({item}) => <TouchableOpacity onPress={() => {navigation.navigate('ProviderProfile', {name: item.name})}}  style={styles.item}>{renderProvider({item})}</TouchableOpacity>} keyExtractor={item => item.id} />
+        <FlatList contentContainerStyle={{alignItems: 'center'}}
+          extraData={providerSource} data={providerSource}
+          renderItem={({item}) => <TouchableOpacity style={styles.itemContainer} onPress={() => {navigation.navigate('ProviderProfile', {name: item.name})}}>{renderProvider({item})}</TouchableOpacity>} keyExtractor={item => item.id} />
         :
-        <Text>No providers found!</Text>}
+        <Text style={{alignSelf: "center"}}>No providers found!</Text>}
     </SafeAreaView>
   );
 }
@@ -102,6 +110,20 @@ const PROVIDERS = [
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: StatusBar.currentHeight || 0,
+    backgroundColor: "white"
+  },
+  itemContainer: {
+    width: Dimensions.get('screen').width - 40,
+    marginTop: 15,
+    paddingVertical: 10
+  },
+  itemImg: {
+    height: "100%"
+  },
+  item: {
+    flex: 1,
+    flexDirection: "row",
+    paddingVertical: 10,
+    borderRadius: 10,
   },
 });

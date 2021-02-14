@@ -18,16 +18,17 @@ export default function SearchScreen() {
   const [finishedSearch, setFinishSearch] = useState(false);
   const [filters, setFilters] = useState([]);
 
-  const updateSearch = (text) => (setSearch(text) && setFinishSearch(false));
+  const updateSearch = (text) => {setSearch(text); setFinishSearch(false);};
+  const selectSearch = (text) => {setSearch(text); setFinishSearch(true);};
   const filterSearch = (flt) => (setFilters(filters.push(flt)) && setFiltering(true));
 
   const underSearch = (search, filter, finishedSearch) => {
     if (finishedSearch)
       return <SearchResult search={search}/>;
     else if (search == "")
-      return <Categories selectCat={filterSearch}/>;
+      return <Categories selectCat={selectSearch}/>;
     else
-      return <Recommendations search={search}/>;
+      return <Recommendations search={search} selectCat={selectSearch}/>;
   }
 
   return (

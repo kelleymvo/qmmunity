@@ -7,9 +7,9 @@ import { Ionicons } from '@expo/vector-icons';
 const RECOMMENDATIONS = [ {key: "Insurance"},
   {key: "Pediatrics"}, {key: "Family Care"}];
 
-export default function Recommendations({ search }) {
+export default function Recommendations({ search, selectCat }) {
   const renderCategory = ({item}) =>
-    <TouchableOpacity onPress={() => selectCat(item.key)}  style={styles.item}>
+    <TouchableOpacity onPress={() => selectCat(search + item.key)}  style={styles.item}>
       <View style={{ marginHorizontal: 10 }}>
         <Ionicons size={32} name="search" color="#6518D3" />
       </View>
@@ -26,6 +26,7 @@ export default function Recommendations({ search }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: "white"
   },
   list: {
     flex: 1,
