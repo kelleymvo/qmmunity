@@ -19,13 +19,22 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "googleServicesFile": "./GoogleService-Info.plist",
+        "bundleIdentifier": "com.qmmunity.qmmunity",
+        "config": {
+          "googleSignIn": {
+          "reservedClientId": "com.googleusercontent.apps.979012396422-tr8cce4tpuomf7cmghiep8j8b0ireb6e"
+        }
+      }
     },
     "android": {
+      "googleServicesFile": "./google-services.json",
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
-        "backgroundColor": "#FFFFFF"
-      }
+        "backgroundColor": "#FFFFFF"},
+          
+      "package": "com.qmmunity.qmmunity"
     },
     "web": {
       "favicon": "./assets/images/favicon.png"

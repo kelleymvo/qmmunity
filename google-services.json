@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "979012396422",
+    "project_id": "qmmunity-d73b3",
+    "storage_bucket": "qmmunity-d73b3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:979012396422:android:92c6eb3b8d8c2d84cc3807",
+        "android_client_info": {
+          "package_name": "com.qmmunity.qmmunity"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "979012396422-8g3nnns0i051vpoiouanot6ele7d328q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDJo6nnphX7p8O27hceCUj-2MTb4dDG7a4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "979012396422-8g3nnns0i051vpoiouanot6ele7d328q.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

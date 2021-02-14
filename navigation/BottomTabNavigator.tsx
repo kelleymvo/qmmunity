@@ -9,9 +9,10 @@ import ProviderScreen from '../screens/ProviderScreen';
 import FacilityScreen from '../screens/FacilityScreen';
 import ExploreScreen from '../screens/ExploreScreen';
 import SearchScreen from '../screens/SearchScreen';
-import TabTwoScreen from '../screens/TabTwoScreen';
+import ForumScreen from '../screens/ForumScreen';
+import NotifScreen from '../screens/NotifScreen';
 import UserProfileScreen from '../screens/UserProfileScreen';
-import { BottomTabParamList, ProviderDashParamList, ForumParamList,
+import { BottomTabParamList, ExploreParamList, ForumParamList,
         NotificationsParamList, UserProfileParamList } from '../types';
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
@@ -89,8 +90,8 @@ function ForumNavigator() {
   return (
     <ForumStack.Navigator>
       <ForumStack.Screen
-        name="TabTwoScreen"
-        component={TabTwoScreen}
+        name="ForumScreen"
+        component={ForumScreen}
         options={{ headerTitle: 'Forum' }}
       />
     </ForumStack.Navigator>
@@ -103,8 +104,8 @@ function NotificationsNavigator() {
   return (
     <NotificationsStack.Navigator>
       <NotificationsStack.Screen
-        name="TabTwoScreen"
-        component={TabTwoScreen}
+        name="NotifScreen"
+        component={NotifScreen}
         options={{ headerTitle: 'Notifications' }}
       />
     </NotificationsStack.Navigator>

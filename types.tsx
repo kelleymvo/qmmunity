@@ -16,11 +16,11 @@ export type ExploreParamList = {
 };
 
 export type ForumParamList = {
-  TabTwoScreen: undefined;
+  ForumScreen: undefined;
 };
 
 export type NotificationsParamList = {
-  TabTwoScreen: undefined;
+  NotifScreen: undefined;
 };
 
 export type UserProfileParamList = {
