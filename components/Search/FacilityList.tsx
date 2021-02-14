@@ -17,7 +17,7 @@ export default function SearchResult({search}) {
     <SafeAreaView style={styles.container}>
 
       {facilitySource.length ? 
-        <FlatList extraData={facilitySource} data={facilitySource} renderItem={({item}) => <TouchableOpacity onPress={() => {navigation.navigate('FacilityProfile')}}  style={styles.item}>{renderFacility({item})}</TouchableOpacity>} keyExtractor={item => item.id} />
+        <FlatList extraData={facilitySource} data={facilitySource} renderItem={({item}) => <TouchableOpacity onPress={() => {navigation.navigate('FacilityProfile', { name: item.name })}}  style={styles.item}>{renderFacility({item})}</TouchableOpacity>} keyExtractor={item => item.id} />
         :
         <Text>None found!</Text>}
     </SafeAreaView>

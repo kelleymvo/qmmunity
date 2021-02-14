@@ -2,54 +2,97 @@ import * as React from 'react';
 import { StyleSheet } from 'react-native';
 
 import EditScreenInfo from '../components/EditScreenInfo';
-import { Text, View } from '../components/Themed';
-import { SafeAreaView, FlatList, StatusBar } from 'react-native';
-import { Avatar, Badge, Icon, Rating, Header } from 'react-native-elements';
+import { View } from '../components/Themed';
+import { SafeAreaView, FlatList, StatusBar, ScrollView, Button, TouchableOpacity } from 'react-native';
+import { Avatar, Badge, Icon, Rating, Header, Text, withBadge } from 'react-native-elements';
 
-export default function ProviderScreen() {
+export default function ProviderScreen() { 
 
   return (
     <SafeAreaView style={styles.container}>
-     //Header
-      <Header
-      placement="left"
-      leftComponent={{ fontSize: 16, text:'Dr. Jamie Robinson', color: '#aaa' }} />
-      
-     //Avatar Standard
+      <ScrollView contentContainerStyle={styles.scrollView}>
+
+
+     {/* Standard Avatar */}
+     <View style={{backgroundColor: 'transparent'}}>
       <Avatar
+       rounded source={{
+      uri: 'https://github.com/CNHCircleK/Images/blob/master/DBoard/OliviaChang.jpg?raw=true', }} size="large" />
+        <Icon type="ionicon" name="checkmark-circle" color="#77D1C5"
+      containerStyle={{ position: 'absolute', bottom: 0, right: 0}} />
+      </View>
+      <Avatar
+        size="large"
         rounded source={{
         uri:
-        'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg', }}/>
+        'https://github.com/CNHCircleK/Images/blob/master/DBoard/OliviaChang.jpg?raw=true'}}/>
 
-    // Provider Name
+    {/* Provider Name*/}
+      <Text h1>Dr. Jamie Robinson</Text>
+      
+    {/* Pronouns and Practice */}
+      <Text h4>She/Her</Text>
+      <Text h4 style={{fontWeight: "bold"}}>Cardiologist</Text>
     
-    //Text Pronouns and Practice
+    {/* About me */}
+      <Text h4> About me: I am LGBTQ+ friendly and culturally informed. </Text>
+    
+    {/* Ratings */}
+     <Text h3>Ratings</Text>
 
-    //Ratings
       <Text>Qmmunity Rating</Text>
-      <Rating showRating fractions="{1}" startingValue="{5}" />
+
+      <Rating imageSize={20} readonly startingValue={5} style={styles.rating} />
 
       <Text>Professionalism</Text>
-      <Rating showRating fractions="{1}" startingValue="{5}" />
+     
+      <Rating imageSize={20} readonly startingValue={5} style={styles.rating} />
     
       <Text>Quality of Care</Text>
-      <Rating showRating fractions="{1}" startingValue="{5}" />
+      <Rating imageSize={20} readonly startingValue={5} style={styles.rating} />
 
       <Text>Friendliness</Text>
-      <Rating showRating fractions="{1}" startingValue="{5}" />
+      <Rating imageSize={20} readonly startingValue={5} style={styles.rating} />
 
       <Text>CMS Rating</Text>
-      <Rating showRating fractions="{1}" startingValue="{5}" />
+      <Rating imageSize={20} readonly startingValue={5} style={styles.rating} />
+    
+    {/* User Preview */}
+     <Text style={{fontWeight: "bold"}}>What Users Are Saying</Text>
+      
+      <Text>Very friendly and made me feel heard.</Text> 
+      <Text>Professional and very nice.</Text>
+      <Text>See More {/* insert icon right chevron */}</Text>
+    {/* Rate Button */}
+      <Button title="Rate Dr. Jamie Robinson"/>
 
-    //
+    {/* Badges */}
+     <Text style={{fontWeight: "bold"}}>Badges</Text>
+     <Text>Trans Friendly</Text> 
+     <Text>Trauma Informed</Text> 
+     <Text>Caring</Text> 
+     <Text>Welcoming</Text> 
 
-    </SafeAreaView>
+    {/* Affiliated Facilities*/}
+     <Text style={{fontWeight: "bold"}}>Affiliated Facilities</Text>
+
+    {/* Contact */}
+      <Button title="Call me"/>
+      <Button title="Website"/>
+
+    
+    </ScrollView>
+   </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: StatusBar.currentHeight || 0,
+    
   },
+  scrollView: {
+    alignItems: 'center',
+    paddingTop: StatusBar.currentHeight || 0,
+  }
 });

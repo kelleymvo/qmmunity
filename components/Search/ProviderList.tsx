@@ -19,7 +19,7 @@ export default function ProviderList({search}) {
     <SafeAreaView style={styles.container}>
 
       {providerSource.length ? 
-        <FlatList extraData={providerSource} data={providerSource} renderItem={({item}) => <TouchableOpacity onPress={() => {navigation.navigate('ProviderProfile')}}  style={styles.item}>{renderProvider({item})}</TouchableOpacity>} keyExtractor={item => item.id} />
+        <FlatList extraData={providerSource} data={providerSource} renderItem={({item}) => <TouchableOpacity onPress={() => {navigation.navigate('ProviderProfile', {name: item.name})}}  style={styles.item}>{renderProvider({item})}</TouchableOpacity>} keyExtractor={item => item.id} />
         :
         <Text>No providers found!</Text>}
     </SafeAreaView>

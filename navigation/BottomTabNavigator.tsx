@@ -7,9 +7,12 @@ import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
 import ProviderScreen from '../screens/ProviderScreen';
 import FacilityScreen from '../screens/FacilityScreen';
-import ProviderDashScreen from '../screens/ProviderDashScreen';
+import ExploreScreen from '../screens/ExploreScreen';
+import SearchScreen from '../screens/SearchScreen';
 import TabTwoScreen from '../screens/TabTwoScreen';
-import { BottomTabParamList, ProviderDashParamList, TabTwoParamList } from '../types';
+import UserProfileScreen from '../screens/UserProfileScreen';
+import { BottomTabParamList, ProviderDashParamList, ForumParamList,
+        NotificationsParamList, UserProfileParamList } from '../types';
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
@@ -18,20 +21,34 @@ export default function BottomTabNavigator() {
 
   return (
     <BottomTab.Navigator
-      initialRouteName="ProviderDash"
+      initialRouteName="Explore"
       tabBarOptions={{ activeTintColor: Colors[colorScheme].tint }}>
       <BottomTab.Screen
-        name="ProviderDash"
-        component={ProviderDashNavigator}
+        name="Explore"
+        component={ExploreNavigator}
         options={{
-          tabBarIcon: ({ color }) => <TabBarIcon name="ios-code" color={color} />,
+          tabBarIcon: ({ color }) => <TabBarIcon name="compass" color={color} />,
         }}
       />
       <BottomTab.Screen
-        name="TabTwo"
-        component={TabTwoNavigator}
+        name="Forum"
+        component={ForumNavigator}
         options={{
-          tabBarIcon: ({ color }) => <TabBarIcon name="ios-code" color={color} />,
+          tabBarIcon: ({ color }) => <TabBarIcon name="chatbubbles" color={color} />,
+        }}
+      />
+      <BottomTab.Screen
+        name="Notifications"
+        component={NotificationsNavigator}
+        options={{
+          tabBarIcon: ({ color }) => <TabBarIcon name="notifications" color={color} />,
+        }}
+      />
+      <BottomTab.Screen
+        name="Profile"
+        component={UserProfileNavigator}
+        options={{
+          tabBarIcon: ({ color }) => <TabBarIcon name="person" color={color} />,
         }}
       />
     </BottomTab.Navigator>
@@ -46,32 +63,64 @@ function TabBarIcon(props: { name: React.ComponentProps<typeof Ionicons>['name']
 
 // Each tab has its own navigation stack, you can read more about this pattern here:
 // https://reactnavigation.org/docs/tab-based-navigation#a-stack-navigator-for-each-tab
-const ProviderDashStack = createStackNavigator<ProviderDashParamList>();
+const ExploreStack = createStackNavigator<ExploreParamList>();
 
-function ProviderDashNavigator() {
+function ExploreNavigator() {
   return (
-    <ProviderDashStack.Navigator>
-      <ProviderDashStack.Screen
-        name="ProviderDashScreen"
-        component={ProviderDashScreen}
-        options={{ headerTitle: 'Provider Dashboard' }}
+    <ExploreStack.Navigator>
+      <ExploreStack.Screen
+        name="Explore"
+        component={ExploreScreen}
+        options={{ headerTitle: 'Explore' }}
       />
-      <ProviderDashStack.Screen name="FacilityProfile" component={FacilityScreen} />
-      <ProviderDashStack.Screen name="ProviderProfile" component={ProviderScreen} />
-    </ProviderDashStack.Navigator>
+      <ExploreStack.Screen name="Search" component={SearchScreen}
+      options={{ animationEnabled: false }} />
+      <ExploreStack.Screen name="FacilityProfile" component={FacilityScreen}
+      options={({ route }) => ({ title: route.params.name })} />
+      <ExploreStack.Screen name="ProviderProfile" component={ProviderScreen}
+      options={({ route }) => ({ title: route.params.name })} />
+    </ExploreStack.Navigator>
   );
 }
 
-const TabTwoStack = createStackNavigator<TabTwoParamList>();
+const ForumStack = createStackNavigator<ForumParamList>();
 
-function TabTwoNavigator() {
+function ForumNavigator() {
   return (
-    <TabTwoStack.Navigator>
-      <TabTwoStack.Screen
+    <ForumStack.Navigator>
+      <ForumStack.Screen
         name="TabTwoScreen"
         component={TabTwoScreen}
-        options={{ headerTitle: 'Tab Two Title' }}
+        options={{ headerTitle: 'Forum' }}
       />
-    </TabTwoStack.Navigator>
+    </ForumStack.Navigator>
+  );
+}
+
+const NotificationsStack = createStackNavigator<NotificationsParamList>();
+
+function NotificationsNavigator() {
+  return (
+    <NotificationsStack.Navigator>
+      <NotificationsStack.Screen
+        name="TabTwoScreen"
+        component={TabTwoScreen}
+        options={{ headerTitle: 'Notifications' }}
+      />
+    </NotificationsStack.Navigator>
+  );
+}
+
+const UserProfileStack = createStackNavigator<UserProfileParamList>();
+
+function UserProfileNavigator() {
+  return (
+    <UserProfileStack.Navigator>
+      <UserProfileStack.Screen
+        name="UserProfileScreen"
+        component={UserProfileScreen}
+        options={{ headerTitle: 'Profile' }}
+      />
+    </UserProfileStack.Navigator>
   );
 }
