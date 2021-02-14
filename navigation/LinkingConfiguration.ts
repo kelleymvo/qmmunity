@@ -9,6 +9,8 @@ export default {
           ProviderDash: {
             screens: {
               ProviderDashScreen: 'providerdash',
+              ProviderScreen: "providerprofile",
+              FacilityScreen: "facilityprofile"
             },
           },
           TabTwo: {

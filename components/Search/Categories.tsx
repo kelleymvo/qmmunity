@@ -4,21 +4,21 @@ import { View, SafeAreaView, FlatList, StatusBar, Text, TouchableOpacity } from 
 import { Ionicons } from '@expo/vector-icons';
 
 
-const RECOMMENDATIONS = [ {key: "Insurance"},
+const CATEGORIES = [ {key: "Hospitalists"},
   {key: "Pediatrics"}, {key: "Family Care"}];
 
-export default function Recommendations({ search, selectCat }) {
+export default function Categories({ selectCat }) {
   const renderCategory = ({item}) =>
-    <TouchableOpacity onPress={() => selectCat(search + item.key)}  style={styles.item}>
+    <TouchableOpacity onPress={() => selectCat(item.key)}  style={styles.item}>
       <View style={{ marginHorizontal: 10 }}>
         <Ionicons size={32} name="search" color="#6518D3" />
       </View>
-      <Text style={{ color: "#6518D3"}}>Results with {search} {item.key}</Text>
+      <Text style={{ color: "#6518D3"}}>{item.key}</Text>
     </TouchableOpacity>
 
   return (
     <SafeAreaView style={styles.container}>
-      <FlatList style={styles.list} data={RECOMMENDATIONS} renderItem={renderCategory} keyExtractor={item => item.key} />
+      <FlatList style={styles.list} data={CATEGORIES} renderItem={renderCategory} keyExtractor={item => item.key} />
     </SafeAreaView>
   );
 }

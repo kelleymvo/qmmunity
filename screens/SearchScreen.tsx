@@ -3,36 +3,44 @@ import { StyleSheet } from 'react-native';
 
 import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View } from '../components/Themed';
-import Categories from '../components/Search/categories';
+import Categories from '../components/Search/Categories';
 import SearchResult from '../components/Search/SearchResult';
 import Recommendations from '../components/Search/Recommendations';
 
 import { SafeAreaView, FlatList, StatusBar } from 'react-native';
 import { SearchBar } from 'react-native-elements';
 
-export default function ProviderDashScreen() {
+export default function SearchScreen() {
 
   const [search, setSearch] = useState("");
-  
+  const [searching, setSearching] = useState(false);
+  const [filtering, setFiltering] = useState(false);
   const [finishedSearch, setFinishSearch] = useState(false);
+  const [filters, setFilters] = useState([]);
 
-  const updateSearch = (text) => setSearch(text);
+  const updateSearch = (text) => {setSearch(text); setFinishSearch(false);};
+  const selectSearch = (text) => {setSearch(text); setFinishSearch(true);};
+  const filterSearch = (flt) => (setFilters(filters.push(flt)) && setFiltering(true));
 
   const underSearch = (search, filter, finishedSearch) => {
     if (finishedSearch)
       return <SearchResult search={search}/>;
     else if (search == "")
-      return <Categories selectCat={updateSearch}/>;
+      return <Categories selectCat={selectSearch}/>;
     else
-      return <Recommendations/>;
+      return <Recommendations search={search} selectCat={selectSearch}/>;
   }
 
   return (
     <SafeAreaView style={styles.container}>
-      <SearchBar placeholder="Type Here..." 
+      <SearchBar placeholder="Search" 
+      platform="ios"
+      autoFocus={true}
       onChangeText={updateSearch} 
       value={search}
-      onSubmitEditing={() => setFinishSearch(true)}
+      onFocus={() => setSearching(true)}
+      onBlur={() => setSearching(false)}
+      onSubmitEditing={() => setFinishSearch(true) && setFiltering(false)}
       returnKeyType="search"
       />
 
@@ -44,6 +52,5 @@ export default function ProviderDashScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: StatusBar.currentHeight || 0,
   },
 });
