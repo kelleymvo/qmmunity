@@ -1,20 +1,42 @@
-import * as React from 'react';
-import { StyleSheet } from 'react-native';
+import React, { Component, useState } from 'react';
+import { Alert, Button, TextInput, SafeAreaView, FlatList, StatusBar, StyleSheet } from 'react-native';
+import EditScreenInfo from '../../components/EditScreenInfo';
+import { View } from '../../components/Themed';
+import { Text } from 'react-native-elements'
 
-import EditScreenInfo from '../components/EditScreenInfo';
-import { Text, View } from '../components/Themed';
 
-import { SafeAreaView, FlatList, StatusBar, Textinput } from 'react-native';
 
-const UsernameInput = () => {
-  const [value, onChangeText] = React.useState('Useless Placeholder');
-
-export default function TabOneScreen() {
+export default LoginScreen = ({ navigation }) => {
+  const [login, onChangeLogin] = React.useState('');
+  const [password, onChangePass] = React.useState('');
+  
+  const tryLogin = () => {
+    if (login=="abc" && password=="123")
+      navigation.navigate("Root");
+  }
 
   return (
     <SafeAreaView style={styles.container}>
-      <Text>Log in</Text>
-      
+      <Text h2>Log in</Text>
+    <TextInput
+      style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}
+      onChangeText={text => onChangeLogin(text)}
+      value={login}
+      placeholder="Username"
+    />
+    <TextInput
+      style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}
+      onChangeText={text => onChangePass(text)}
+      value={password}
+      placeholder="Password"
+      autoCompleteType ="off"
+      secureTextEntry={true}
+    />
+    {/*errorState && <Text>WRONG</Text>*/}
+   <Button
+        title="Sign in"
+        onPress={tryLogin}
+      />
     </SafeAreaView>
   );
 }
